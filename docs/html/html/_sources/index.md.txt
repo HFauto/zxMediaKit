@@ -1,0 +1,37 @@
+## zxMediaService
+
+[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](http://111.160.23.206:8081/mediakit/mediakit/-/tree/master/LICENSE)
+[![Language](https://img.shields.io/badge/language-c++-red.svg)](https://en.cppreference.com/)
+[![Platform](https://img.shields.io/badge/platform-linux%20-yellow.svg)](https://www.kernel.org/)
+[![author](https://img.shields.io/badge/author-HFauto%20-y.svg)]()
+
+用于快速搭建一个流媒体开发基础环境
+
+#### 快速开始（Linux）：
+~~~sh
+clone http://111.160.23.206:8081/mediakit/mediakit.git 
+cd mediakit
+mkdir build && cd bulid && cmake .. && make -j
+~~~
+
+#### cmake编译选项：
+~~~sh
+-- ENABLE_CATCH                    ON
+-- ENABLE_SPDLOG                   ON
+-- ENABLE_JEMALLOC                 ON
+-- ENABLE_JEMALLOC_STATIC          ON
+-- ENABLE_OPENSSL                  ON
+-- ENABLE_OPENSSL_STATIC           ON
+-- ENABLE_LIBYUV                   ON
+-- ENABLE_LIBYUV_STATIC            ON
+-- ENABLE_X264                     ON
+-- ENABLE_X265                     ON
+-- ENABLE_FFMPEG                   ON
+-- ENABLE_FFMPEG_STATIC            ON
+-- ENABLE_WORKFLOW                 ON
+-- ENABLE_WORKFLOW_STATIC          ON
+-- ENABLE_WORKFLOW_KAFKA           ON
+-- ENABLE_WORKFLOW_KAFKA_STATIC    ON
+-- ENABLE_BUILD_TEST               ON
+-- ENABLE_MEDIA_SERVICE_STATIC     ON
+~~~

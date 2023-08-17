@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>zxMediaService &mdash; zxMediaKit http://111.160.23.206:8081/mediakit/mediakit.git 文档</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/translations.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> zxMediaKit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">zxMediaService</a><ul>
+<li><a class="reference internal" href="#id1">编译环境</a></li>
+<li><a class="reference internal" href="#id2">快速开始</a></li>
+<li><a class="reference internal" href="#id3">编译选项</a></li>
+<li><a class="reference internal" href="#id4">目录结构</a></li>
+<li><a class="reference internal" href="#id5">三方库文档</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">zxMediaKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">zxMediaService</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.md.txt" rel="nofollow"> 查看页面源码</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="zxmediaservice">
+<h1>zxMediaService<a class="headerlink" href="#zxmediaservice" title="此标题的永久链接"></a></h1>
+<p><a class="reference external" href="http://111.160.23.206:8081/mediakit/mediakit/-/tree/master/LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-green.svg" /></a>
+<a class="reference external" href="https://en.cppreference.com/"><img alt="Language" src="https://img.shields.io/badge/language-c++14-red.svg" /></a>
+<a class="reference external" href="https://www.kernel.org/"><img alt="Platform" src="https://img.shields.io/badge/platform-linux%20-yellow.svg" /></a>
+<a class="reference external" href="#"><img alt="author" src="https://img.shields.io/badge/author-HFauto%20-y.svg" /></a></p>
+<p>用于快速搭建一个流媒体开发基础环境</p>
+<p>[toc]</p>
+<section id="id1">
+<h2>编译环境<a class="headerlink" href="#id1" title="此标题的永久链接"></a></h2>
+<ul>
+<li><p>基础编译环境</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>build-essential<span class="w"> </span>cmake<span class="w"> </span>zlib1g-dev<span class="w"> </span>liblzma-dev<span class="w"> </span>libz2-dev<span class="w"> </span>nasm
+</pre></div>
+</div>
+</li>
+<li><p>要求 cmake 版本 3.12 及以上，升级方法</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>./extern/cmake-3.25.1-linux-x86_64.sh<span class="w"> </span>--<span class="w"> </span>--skip-license<span class="w"> </span>--prefix<span class="o">=</span>/usr
+sudo<span class="w"> </span>./extern/cmake-3.24.3-linux-aarch64.sh<span class="w"> </span>--<span class="w"> </span>--skip-license<span class="w"> </span>--prefix<span class="o">=</span>/usr
+</pre></div>
+</div>
+</li>
+<li><p>如果更新 extern 中 libyuv 源码，则需要在原 libyuv 的 CmakeList.txt 中添加</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">CMAKE_MINIMUM_REQUIRED</span><span class="p">(</span><span class="w"> </span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.12</span><span class="w"> </span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_C_STANDARD</span><span class="w"> </span><span class="s">11</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_STANDARD</span><span class="w"> </span><span class="s">11</span><span class="p">)</span>
+<span class="nb">if</span><span class="p">(</span><span class="s">POLICY</span><span class="w"> </span><span class="s">CMP0064</span><span class="p">)</span>
+<span class="nb">cmake_policy</span><span class="p">(</span><span class="s">SET</span><span class="w"> </span><span class="s">CMP0064</span><span class="w"> </span><span class="s">NEW</span><span class="p">)</span>
+<span class="nb">endif</span><span class="p">()</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">EXTERN_INSTALL_DIR</span><span class="w">      </span><span class="o">${</span><span class="nv">CMAKE_CURRENT_SOURCE_DIR</span><span class="o">}</span><span class="s">/../usr</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">JPEG_PATH_ROOT</span><span class="w"> </span><span class="o">${</span><span class="nv">EXTERN_INSTALL_DIR</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">JPEG_DIR</span><span class="w"> </span><span class="o">${</span><span class="nv">EXTERN_INSTALL_DIR</span><span class="o">}</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>如果更新了 opencv 源码,需要更改 /cmake/extern/OpenCVConfig-xxx 文件中的版本信息</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="c1"># 为方便使用cmake查找链接opencv_world，opencv编译完成后替换了原有的config文件</span>
+<span class="w">    </span>cp<span class="w"> </span>-f<span class="w"> </span><span class="si">${</span><span class="nv">CMAKE_SOURCE_DIR</span><span class="si">}</span>/cmake/extern/OpenCVConfig-static.cmake<span class="w"> </span><span class="si">${</span><span class="nv">CMAKE_SOURCE_DIR</span><span class="si">}</span>/extern/usr/lib/cmake/opencv4/OpenCVConfig.cmake
+<span class="w">    </span>cp<span class="w"> </span>-f<span class="w"> </span><span class="si">${</span><span class="nv">CMAKE_SOURCE_DIR</span><span class="si">}</span>/cmake/extern/OpenCVConfig-shared.cmake<span class="w"> </span><span class="si">${</span><span class="nv">CMAKE_SOURCE_DIR</span><span class="si">}</span>/extern/usr/lib/cmake/opencv4/OpenCVConfig.cmake
+</pre></div>
+</div>
+</li>
+<li><p>注意事项</p>
+<ul class="simple">
+<li><p>使用 workflow 组件时不允许使用 jemalloc 组件。</p></li>
+<li><p>ffmpeg 与 opencv 组件同时使用时，避免与系统本身自带的 ffmpeg 库冲突，
+需要 cmake/extern/ffmpeg-config.cmake 帮助找到我们编译的 ffmpeg 而不是系统本身的，
+构建时会自动拷贝到 EXTERN_INSTALL_DIR 目录，
+注意：当更换 ffmpeg 源码时需要修改 ffmpeg-config.cmake 中的版本信息。</p></li>
+<li><p>所支持的组件全部支持动态或静态链接到主服务，
+静态链接耗时较长，主程序体积较大，但是部署更加方便，根据实际业务灵活选用。</p></li>
+<li><p>使用动态编译时：所使能的第三方库全部安装在 extern/usr 下面，部署程序时按需拷贝。</p></li>
+<li><p>make install 后程序安装目录为 release/xxx。</p></li>
+<li><p>某个组件需要重新编译时：
+删除 extern/usr/bin/xxx 中对应程序后重新构建即可，cmake将重新删除组件原来的构建目录重新构建编译。</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id2">
+<h2>快速开始<a class="headerlink" href="#id2" title="此标题的永久链接"></a></h2>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># 初次构建时需要安装依赖用时较长，按需开启编译选项</span>
+clone<span class="w"> </span>http://111.160.23.206:8081/mediakit/mediakit.git<span class="w"> </span>
+<span class="nb">cd</span><span class="w"> </span>mediakit
+mkdir<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>cmake<span class="w"> </span>..<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>-j<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>install<span class="w"> </span>-j
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2>编译选项<a class="headerlink" href="#id3" title="此标题的永久链接"></a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>--<span class="w"> </span>ENABLE_CATCH<span class="w">                    </span>ON
+<span class="w">  </span>--<span class="w"> </span>ENABLE_SPDLOG<span class="w">                   </span>ON
+<span class="w">  </span>--<span class="w"> </span>ENABLE_JEMALLOC<span class="w">                 </span>OFF
+<span class="w">  </span>--<span class="w"> </span>ENABLE_JEMALLOC_STATIC<span class="w">          </span>OFF
+<span class="w">  </span>--<span class="w"> </span>ENABLE_OPENSSL<span class="w">                  </span>ON
+<span class="w">  </span>--<span class="w"> </span>ENABLE_OPENSSL_STATIC<span class="w">           </span>ON
+<span class="w">  </span>--<span class="w"> </span>ENABLE_LIBYUV<span class="w">                   </span>ON
+<span class="w">  </span>--<span class="w"> </span>ENABLE_LIBYUV_STATIC<span class="w">            </span>ON
+<span class="w">  </span>--<span class="w"> </span>ENABLE_X264<span class="w">                     </span>ON
+<span class="w">  </span>--<span class="w"> </span>ENABLE_X264_STATIC<span class="w">              </span>ON
+<span class="w">  </span>--<span class="w"> </span>ENABLE_X265<span class="w">                     </span>ON
+<span class="w">  </span>--<span class="w"> </span>ENABLE_X265_STATIC<span class="w">              </span>ON
+<span class="w">  </span>--<span class="w"> </span>ENABLE_FFMPEG<span class="w">                   </span>ON
+<span class="w">  </span>--<span class="w"> </span>ENABLE_FFMPEG_STATIC<span class="w">            </span>ON
+<span class="w">  </span>--<span class="w"> </span>ENABLE_OPENCV<span class="w">                   </span>ON
+<span class="w">  </span>--<span class="w"> </span>ENABLE_OPENCV_STATIC<span class="w">            </span>ON
+<span class="w">  </span>--<span class="w"> </span>ENABLE_WORKFLOW<span class="w">                 </span>ON
+<span class="w">  </span>--<span class="w"> </span>ENABLE_WORKFLOW_STATIC<span class="w">          </span>ON
+<span class="w">  </span>--<span class="w"> </span>ENABLE_WORKFLOW_KAFKA<span class="w">           </span>ON
+<span class="w">  </span>--<span class="w"> </span>ENABLE_WORKFLOW_KAFKA_STATIC<span class="w">    </span>ON
+<span class="w">  </span>--<span class="w"> </span>ENABLE_BUILD_TEST<span class="w">               </span>ON
+<span class="w">  </span>--<span class="w"> </span>ENABLE_MEDIA_SERVICE_STATIC<span class="w">     </span>ON
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h2>目录结构<a class="headerlink" href="#id4" title="此标题的永久链接"></a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>.
+├──<span class="w"> </span>app<span class="w"> </span><span class="c1"># 可执行程序</span>
+├──<span class="w"> </span>bash<span class="w"> </span><span class="c1"># 脚本工具</span>
+├──<span class="w"> </span>cmake<span class="w"> </span><span class="c1"># 自定义cmake模块</span>
+│<span class="w">   </span>├──<span class="w"> </span>checks<span class="w"> </span>
+│<span class="w">   </span>├──<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>
+│<span class="w">   </span>├──<span class="w"> </span>find
+│<span class="w">   </span>└──<span class="w"> </span>func
+├──<span class="w"> </span>docs<span class="w"> </span><span class="c1"># Sphinx文档构建</span>
+│<span class="w">   </span>├──<span class="w"> </span>build<span class="w">           </span>
+│<span class="w">   </span>├──<span class="w"> </span>doc<span class="w">           </span>
+│<span class="w">   </span>└──<span class="w"> </span>html
+├──<span class="w"> </span>extern<span class="w"> </span><span class="c1"># 三方库</span>
+│<span class="w">   </span>├──<span class="w"> </span>catch
+│<span class="w">   </span>├──<span class="w"> </span>external-Linux
+│<span class="w">   </span>├──<span class="w"> </span>ffmpeg
+│<span class="w">   </span>├──<span class="w"> </span>opencv
+│<span class="w">   </span>├──<span class="w"> </span>libjpeg
+│<span class="w">   </span>├──<span class="w"> </span>libx264
+│<span class="w">   </span>├──<span class="w"> </span>libx265
+│<span class="w">   </span>├──<span class="w"> </span>libyuv
+│<span class="w">   </span>├──<span class="w"> </span>lz4
+│<span class="w">   </span>├──<span class="w"> </span>openssl
+│<span class="w">   </span>├──<span class="w"> </span>spdlog
+│<span class="w">   </span>├──<span class="w"> </span>usr<span class="w"> </span><span class="c1"># 所有三方依赖库的安装路径</span>
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>bin
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>include
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>lib
+│<span class="w">   </span>├──<span class="w"> </span>workflow
+│<span class="w">   </span>└──<span class="w"> </span>zstd
+├──<span class="w"> </span>release<span class="w"> </span><span class="c1"># 程序安装路径</span>
+├──<span class="w"> </span>lib<span class="w"> </span><span class="c1"># 项目库</span>
+├──<span class="w"> </span>src<span class="w"> </span><span class="c1"># 项目源码</span>
+│<span class="w">   </span>├──<span class="w"> </span>base<span class="w"> </span><span class="c1"># 基础库</span>
+│<span class="w">   </span>├──<span class="w"> </span>ffmcpp<span class="w"> </span><span class="c1"># 对ffmpeg的cpp二次封装</span>
+│<span class="w">   </span>├──<span class="w"> </span>include<span class="w"> </span><span class="c1"># 头文件</span>
+│<span class="w">   </span>├──<span class="w"> </span>log<span class="w"> </span><span class="c1"># 自定义日志模块</span>
+│<span class="w">   </span>├──<span class="w"> </span>main<span class="w"> </span><span class="c1"># 主程序入口</span>
+│<span class="w">   </span>├──<span class="w"> </span>toolkit<span class="w"> </span><span class="c1">#zltoolkit模块</span>
+│<span class="w">   </span>├──<span class="w"> </span>tools<span class="w"> </span><span class="c1"># 对三方库的二次封装或其他工具库</span>
+│<span class="w">   </span>└──<span class="w"> </span>util<span class="w">  </span><span class="c1">#通用函数库</span>
+└──<span class="w"> </span><span class="nb">test</span><span class="w">  </span><span class="c1"># 包含各模块的test程序</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h2>三方库文档<a class="headerlink" href="#id5" title="此标题的永久链接"></a></h2>
+<p><a class="reference internal" href="some_tutorials.html"><span class="doc">文档</span></a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2023, HFauto.</p>
+  </div>
+
+  利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用的 
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    由 <a href="https://readthedocs.org">Read the Docs</a> 开发.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
