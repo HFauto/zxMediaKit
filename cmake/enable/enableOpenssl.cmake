@@ -29,7 +29,7 @@ if(ENABLE_OPENSSL)
                 COMMAND ./config --prefix=${EXTERN_INSTALL_DIR}
                 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/extern/openssl RESULT_VARIABLE ret)
         EXECUTE_PROCESS(
-                COMMAND make -j
+                COMMAND make -j${BUILD_CPU_NUM}
                 COMMAND make install
                 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/extern/openssl RESULT_VARIABLE ret)
         if(NOT ret EQUAL 0)

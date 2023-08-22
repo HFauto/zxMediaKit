@@ -103,9 +103,12 @@ endif ()
 # 清空全局变量
 clean_cached_list(MK_COMPILE_DEFINITIONS)
 clean_cached_list(ZX_LINK_LIBRARIES)
+
 # 使用PkgConfig查找库
 find_package(PkgConfig QUIET)
+
 # 设置输出路径
+set(BUILD_CPU_NUM           1)
 set(LIBRARY_OUTPUT_PATH     ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 set(EXECUTABLE_OUTPUT_PATH  ${CMAKE_CURRENT_SOURCE_DIR}/app)
 set(CMAKE_INSTALL_PREFIX    ${CMAKE_CURRENT_SOURCE_DIR}/extern/usr)
@@ -115,6 +118,8 @@ set(PROJECT_INSTALL_ROOTDIR ${CMAKE_CURRENT_SOURCE_DIR}/release/${CMAKE_SYSTEM_N
 set(PROJECT_INSTALL_LIBDIR  ${PROJECT_INSTALL_ROOTDIR}/lib)
 set(PROJECT_INSTALL_APPDIR  ${PROJECT_INSTALL_ROOTDIR}/app)
 set(PROJECT_INSTALL_INCDIR  ${PROJECT_INSTALL_ROOTDIR}/include)
+set(ENV{PKG_CONFIG_PATH} "${EXTERN_INSTALL_DIR}/lib/pkgconfig")
+message(STATUS PKG_CONFIG_PATH=$ENV{PKG_CONFIG_PATH})
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/enable/enableCatch.cmake)
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/enable/enableSpdlog.cmake)

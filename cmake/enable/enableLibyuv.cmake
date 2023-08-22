@@ -32,7 +32,7 @@ if(ENABLE_LIBYUV)
                 COMMAND cmake . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${EXTERN_INSTALL_DIR}
                 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/extern/libjpeg RESULT_VARIABLE ret)
         execute_process(
-                COMMAND make -j
+                COMMAND make -j${BUILD_CPU_NUM}
                 COMMAND make install
                 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/extern/libjpeg RESULT_VARIABLE ret)
         if(NOT ret EQUAL 0)
@@ -82,7 +82,7 @@ if(ENABLE_LIBYUV)
             message(FATAL_ERROR "FAILED: ${ret}")
         endif()
         execute_process(
-                COMMAND make -j
+                COMMAND make -j${BUILD_CPU_NUM}
                 COMMAND make install
                 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/extern/libyuv RESULT_VARIABLE ret)
         if(NOT ret EQUAL 0)

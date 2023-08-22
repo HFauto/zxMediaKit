@@ -22,11 +22,11 @@ foreach(src_dir  ${src_dirs})
     endif ()
 endforeach()
 
-add_dependencies(zltoolkit)
-add_dependencies(zx_log)
-add_dependencies(zx_base)
-add_dependencies(zx_tools)
-add_dependencies(zx_util)
+#add_dependencies(zltoolkit LINK_HEADERS)
+#add_dependencies(zx_log LINK_HEADERS)
+#add_dependencies(zx_base LINK_HEADERS)
+#add_dependencies(zx_tools LINK_HEADERS)
+#add_dependencies(zx_util LINK_HEADERS)
 
 
 set(STATIC_LIB_NAME ${PROJECT_NAME}_static)

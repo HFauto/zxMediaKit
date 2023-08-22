@@ -111,7 +111,7 @@ if(ENABLE_OPENCV)
             message(FATAL_ERROR "FAILED: ${ret}")
         endif()
         execute_process(
-                COMMAND make -j
+                COMMAND make -j${BUILD_CPU_NUM}
                 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/extern/opencv/build RESULT_VARIABLE ret)
         if(NOT ret EQUAL 0)
             message(FATAL_ERROR "FAILED: ${ret}")

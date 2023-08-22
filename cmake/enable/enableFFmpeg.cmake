@@ -62,7 +62,7 @@ if(ENABLE_FFMPEG)
             message(FATAL_ERROR "FAILED: ${ret}")
         endif()
         EXECUTE_PROCESS(
-                COMMAND make -j
+                COMMAND make -j${BUILD_CPU_NUM}
                 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/extern/ffmpeg RESULT_VARIABLE ret)
         if(NOT ret EQUAL 0)
             message(FATAL_ERROR "FAILED: ${ret}")

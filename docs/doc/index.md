@@ -12,7 +12,7 @@
 ### 编译环境
   + 基础编译环境
     ~~~shell
-    sudo apt-get install build-essential cmake zlib1g-dev liblzma-dev libz2-dev nasm
+    sudo apt-get install build-essential cmake pkg-config zlib1g-dev liblzma-dev libz2-dev nasm
     ~~~
 
   + 要求 cmake 版本 3.12 及以上，升级方法
@@ -57,7 +57,7 @@
 ### 快速开始
   ~~~sh
   # 初次构建时需要安装依赖用时较长，按需开启编译选项
-  clone http://111.160.23.206:8081/mediakit/mediakit.git 
+  clone https://github.com/HFauto/zxMediaKit
   cd mediakit
   mkdir build && cd build && cmake .. && make -j && make install -j
   ~~~

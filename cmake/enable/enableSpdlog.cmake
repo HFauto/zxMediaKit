@@ -4,7 +4,7 @@
 
 # 下载spdlog
 if(ENABLE_SPDLOG)
-    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/extern/spdlog")
+    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/extern/spdlog/src")
         message(STATUS "spdlog src exists")
         FetchContent_Declare(
                 spdlog

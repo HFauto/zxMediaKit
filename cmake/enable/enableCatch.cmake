@@ -4,7 +4,7 @@
 
 # 下载catch测试单元
 if(ENABLE_CATCH)
-    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/extern/catch")
+    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/extern/catch/tools")
         message(STATUS "catch src exists")
         FetchContent_Declare(
                 catch
