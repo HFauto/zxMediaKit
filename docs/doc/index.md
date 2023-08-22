@@ -12,7 +12,7 @@
 ### 编译环境
   + 基础编译环境
     ~~~shell
-    sudo apt-get install build-essential cmake pkg-config zlib1g-dev liblzma-dev libz2-dev nasm
+    sudo apt-get install build-essential cmake pkg-config zlib1g-dev liblzma-dev libz2-dev libnuma-dev nasm
     ~~~
 
   + 要求 cmake 版本 3.12 及以上，升级方法

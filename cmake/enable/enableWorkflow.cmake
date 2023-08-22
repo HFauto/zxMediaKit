@@ -15,7 +15,7 @@ if(ENABLE_WORKFLOW)
         set(KAFKA "n")
     endif()
 
-    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/extern/workflow/src")
+    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/extern/workflow/benchmark")
         message(STATUS "workflow src exists")
         FetchContent_Declare(
                 workflow
@@ -27,7 +27,7 @@ if(ENABLE_WORKFLOW)
             FetchContent_Declare(
                     workflow
                     URL ${CMAKE_CURRENT_SOURCE_DIR}/extern/workflow-master.zip
-                    URL_HASH  MD5=00d3cc47f9d714864d410fef389a0997
+                    URL_HASH  MD5=c85fec73f7e8faf865c5b6dd49b05935
                     SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/extern/workflow)
             FetchContent_MakeAvailable(workflow)
         else()
